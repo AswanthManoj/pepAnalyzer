@@ -26,6 +26,31 @@ There are 16 types of functionalities available to be calculated for the given p
  - One-to-Three Letter Code Conversion
 5. Bio Blast tool
 
+## Installation
+
+```html
+<pre>
+<code class="language-javascript">
+// Your code goes here
+</code>
+<button class="copy-button" data-clipboard-target="#code-snippet">
+Copy
+</button>
+</pre>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script>
+new ClipboardJS('.copy-button');
+</script>
+```
+
+modlamp==3.0.2
+biopython==1.79
+mpld3==0.5.5
+numpy==1.21.5
+Flask==2.1.1
+
+
 ## Help and Documentation
 To learn more about how to use PepAnalyzer, visit the Help and Documentation section in the application. Here's an overview of what you can expect to find:
 
