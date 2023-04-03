@@ -1,6 +1,9 @@
 # PepAnalyzer
 PepAnalyzer is a powerful and user-friendly tool designed to assist researchers and students in analysing and understanding various aspects of peptides. With this tool, you can easily calculate molecular weight, predict secondary structure, predict hydrophobicity, and much more, making it a helpful tool for students and researchers to get insight about peptides.
 
+
+
+
 ## Features
 Input a peptide sequence, either in upper or lowercase letters. The app will show an alert if ambiguity is detected in the sequence.
 There are 16 types of functionalities available to be calculated for the given peptide sequence and an extra added Blast tool access, including:
@@ -26,6 +29,9 @@ There are 16 types of functionalities available to be calculated for the given p
  - One-to-Three Letter Code Conversion
 5. Bio Blast tool
 
+
+
+
 ## Installation
 
 Run the following code in terminal to install necessery libraries.
@@ -38,12 +44,17 @@ mpld3==0.5.5
 numpy==1.21.5
 Flask==2.1.1
 
+
+
+
 ## Running the webapp
 
 Run the following code in terminal to use the webapp locally.
 ```html
 python app.py
 ```
+
+
 
 
 ## Help and Documentation
