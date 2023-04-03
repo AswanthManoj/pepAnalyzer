@@ -1,0 +1,5 @@
+modlamp==4.3.0 
+biopython==1.79 
+mpld3==0.5.5 
+numpy==1.21.5 
+Flask==2.1.1
