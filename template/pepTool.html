@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Protein folding user web-interface">
+
+      <title>Peptool</title>
+
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/navbars-offcanvas/">
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/list-groups/">
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/footers/">
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/grid/">
+      <link rel="stylesheet" href="{{url_for('static',filename= './assets/dist/css/bootstrap.min.css')}}">
+      <link rel="stylesheet" href="{{url_for('static',filename= './css/pepTool.css')}}">
+  </head>
+
+  <body>
+          <canvas id="canvas"></canvas>
+
+          <!--
+          Loader
+          ==========================-->
+          <div class="loading-screen">
+            <div class="loader"></div>
+            <label>Please wait...</label>
+          </div>
+
+          <!--
+          Navigation Bar
+          ==========================-->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="https://www.deshbandhucollege.ac.in" target="_blank">Deshbandhu College</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasNavbar2Label" style="color: white;">Deshbandhu College</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/peptool">Pep Tool</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/blast_tool">Blast Tool</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Details
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/#team">Team</a></li>
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/documentation#contacts">Contacts</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/documentation">Documentation and FAQ</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        
+          <!--
+          Content
+          ==========================-->
+          <main class="main-content-container">
+            <div class="wrapper">
+                <header>
+                  <h1>PepAnalyzer</h1>
+                </header>
+                <!--Function selection checkboxes-->
+                <section>
+                  <form method="post" action="/calculate_result" id="dataForm" enctype="multipart/form-data">
+
+                    <!--Protein sequence text input field-->
+                    <div class="pb-5">
+                      <div class="col-12">
+                        <div class="input-group input-group-lg has-validation">
+                          <span class="input-group-text" id="inputGroup-sizing-lg">Protein Sequence</span>
+                          <input name="seq" type="text" class="form-control" id="seq" placeholder="Enter the sequence of amino acids" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
+                          <div class="invalid-feedback">
+                            A valid protein sequence is required!
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--row1-->
+                    <div class="columns">
+                        <!--Physical/Chemical Properties-->
+                        <div class="column">
+                          <div class="column-title">Physical/Chemical Properties</div>
+                          <div class="list-group w-auto">
+
+                            <!--Peptide Size-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f1" id="f1" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Peptide Size</strong>
+                              </span>
+                            </label>
+
+                            <!--Molecular Weight-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f2" id="f2" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Molecular Weight</strong>
+                              </span>
+                            </label>
+
+                            <!--Distribution of Amino Acid-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f4" id="f4" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Distribution of Amino Acid</strong>
+                              </span>
+                            </label>
+
+                            <!--Amino Acid Classifier-->
+                            <label class="list-group-item d-flex gap-3">
+                                <input class="form-check-input flex-shrink-0" name="cal" value="f5" id="f5" type="checkbox" style="font-size: 1.375em;">
+                                <span class="pt-1 form-checked-content">
+                                  <strong>Amino Acid Classifier</strong>
+                                </span>
+                            </label>
+
+                          </div>
+                        </div>
+                    
+                        <!--Predictive Tools-->
+                        <div class="column">
+                          <div class="column-title">Predictive Tools</div>
+                          <div class="list-group w-auto">
+
+                            <!--Peptide Charge Calculator-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f6" id="f6" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Peptide Charge</strong>
+                              </span>
+                            </label>
+
+                            <!--Aromaticity Calculator-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f7" id="f7" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Aromaticity</strong>
+                              </span>
+                            </label>
+
+                            <!--Half Life Predictor-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f8" id="f8" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Half Life and Gravy Index</strong>
+                              </span>
+                            </label>
+
+                            <!--Predict Secondary Structure-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f9" id="f9" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Secondary Structure</strong>
+                              </span>
+                            </label>
+
+                            <!--Molar Extinction Coefficient-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f10" id="f10" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Molar Extinction Coefficient</strong>
+                              </span>
+                            </label>
+
+                            <!--Disulfide Bridges Calculation-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f11" id="f11" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Disulfide Bridges</strong>
+                              </span>
+                            </label>
+
+                            <!--Binding Potential Calculator-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f12" id="f12" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Binding Potential</strong>
+                              </span>
+                            </label>
+
+                            <!--Isoelectric point-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f17" id="f17" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Isoelectric Point</strong>
+                              </span>
+                            </label>
+
+                          </div>
+                        </div>
+                    
+                        <!--Graphical Representations of Peptide Functions-->
+                        <div class="column">
+                          <div class="column-title">Graphical Representations</div>
+                          <div class="list-group w-auto">
+
+                            <!--Hydropathy Plot for Peptide-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f13" id="f13" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Hydropathy Plot</strong>
+                              </span>
+                            </label>
+
+                            <!--Helical Wheel Projection for Peptide-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f14" id="f14" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Helical Wheel Projection</strong>
+                              </span>
+                            </label>
+
+                            <!--Distribution of Amino Acid-->
+                            <label class="list-group-item d-flex gap-3">
+                              <input class="form-check-input flex-shrink-0" name="cal" value="f15" id="f15" type="checkbox" style="font-size: 1.375em;">
+                              <span class="pt-1 form-checked-content">
+                                <strong>Distribution of Amino Acid</strong>
+                              </span>
+                            </label>
+
+                            <!--Amino Acid Classifier-->
+                            <label class="list-group-item d-flex gap-3">
+                                <input class="form-check-input flex-shrink-0" name="cal" value="f16" id="f16" type="checkbox" style="font-size: 1.375em;">
+                                <span class="pt-1 form-checked-content">
+                                  <strong>Amino Acid Classifier</strong>
+                                </span>
+                            </label>
+
+                          </div>
+                        </div>
+                    </div>
+
+                    <!--row2-->
+                    <div style="border: 1px solid rgb(188, 188, 188); margin-left: 20px; margin-right: 20px;">
+                      <div class="list-group w-auto">
+                        <!--Conversion Utility-->
+                        <div class="column-title" style="margin-top:-70px;">Conversion Utility</div>
+
+                        <!--One-to-Three Letter Code Conversion-->
+                        <label class="list-group-item d-flex gap-3">
+                          <input class="form-check-input flex-shrink-0" name="cal" value="f3" id="f3" type="checkbox" style="font-size: 1.375em;">
+                          <span class="pt-1 form-checked-content">
+                            <strong>One-to-Three Letter Code</strong>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <!--Select all operations-->
+                      <label class="list-group-item d-flex gap-3" style="background-color: #00000000; margin:20px; margin-top: 50px;  margin-bottom: -20px;">
+                        <input id="select" class="form-check-input flex-shrink-0" type="checkbox" onclick='selects()' style="font-size: 1.375em;">
+                        <span class="pt-1 form-checked-content">
+                          <strong id="select-all-functions">Select all options</strong>
+                        </span>
+                      </label>
+
+                    <!--button-container-->
+                    <div class="btn-wrapper">
+                      <input type="reset" class="btn btn-outline-primary btn-lg">
+                      <input type="button" class="btn btn-outline-primary btn-lg" value="Calculate" onclick="checkAmbiguity();">
+                    </div>
+
+                  </form> 
+                <section>
+            </div>
+
+          </main>
+
+          <!--
+          Footer
+          ==========================-->
+          <div class="container">
+            <footer class="py-3 my-4">
+              <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Peptool</a></li>
+                <li class="nav-item"><a href="/blast_tool" class="nav-link px-2 text-muted">Blast Tool</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Research paper</a></li>
+                <li class="nav-item"><a href="/documentation#faq" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="/documentation#document" class="nav-link px-2 text-muted">Documentation</a></li>
+              </ul>
+              <p class="text-center text-muted">&copy; PepAnalyzer tool version-1</p>
+            </footer>
+          </div>
+  </body>
+  <script src="{{url_for('static',filename= './assets/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename= './js/pepTool.js')}}"></script>
+  <script src="{{url_for('static',filename= './js/particle.js')}}"></script>
+</html>
