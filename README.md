@@ -28,27 +28,22 @@ There are 16 types of functionalities available to be calculated for the given p
 
 ## Installation
 
+Run the following code in terminal to install necessery libraries.
 ```html
-<pre>
-<code class="language-javascript">
-// Your code goes here
-</code>
-<button class="copy-button" data-clipboard-target="#code-snippet">
-Copy
-</button>
-</pre>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-<script>
-new ClipboardJS('.copy-button');
-</script>
+pip install -r requirements.txt
 ```
-
-modlamp==3.0.2
+modlamp==4.3.0
 biopython==1.79
 mpld3==0.5.5
 numpy==1.21.5
 Flask==2.1.1
+
+## Running the webapp
+
+Run the following code in terminal to use the webapp locally.
+```html
+python app.py
+```
 
 
 ## Help and Documentation
