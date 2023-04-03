@@ -1,3 +1,3 @@
 imgbb_API_Key="f76f95d6390a66acdf6fc745a522e5c1"
-ipfs_API_Key="a6638a5c25f9310e2d22"
-ipfs_API_Secret="df6e28a77f5143bf95430bf09db75f9947e18d3e0d1d631439acd6e84cf30c42"
+ipfs_API_Key="<your pinata api key>"
+ipfs_API_Secret="<your pinata api secret key>"
