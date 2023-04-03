@@ -32,5 +32,7 @@ To learn more about how to use PepAnalyzer, visit the Help and Documentation sec
 Sequence: Input a peptide sequence, either in upper or lowercase letters. The app will show an alert if ambiguity is detected in the sequence.
 Set parameters: There are 16 types of functionalities available to be calculated for the given peptide sequence and an extra added Blast tool access.
 Submit: Clicking on Submit will take us to a new page where we can see all the results that have been calculated. If the blast tool was accessed, this may take some time to display results depending on the length of the input sequence.
+
 Query: Mail your query to [mrlabdbc@db.du.ac.in](mailto:mrlabdbc@db.du.ac.in) about paper.
+
 Query: Mail your query to [aswanthmanoj51@gmail.com](mailto:aswanthmanoj51@gmail.com) about code.
