@@ -5,10 +5,10 @@ PepAnalyzer is a powerful and user-friendly tool designed to assist researchers 
 Input a peptide sequence, either in upper or lowercase letters. The app will show an alert if ambiguity is detected in the sequence.
 There are 16 types of functionalities available to be calculated for the given peptide sequence and an extra added Blast tool access, including:
 1. Physical/Chemical Properties:
- - Peptide Size
- - Molecular Weight
- - Distribution of Amino Acid
- - Amino Acid Classifier
+  - Peptide Size
+  - Molecular Weight
+  - Distribution of Amino Acid
+  - Amino Acid Classifier
 2. Predictive Tools:
  - Peptide Charge Calculator
  - Aromicity Calculator
@@ -32,4 +32,5 @@ To learn more about how to use PepAnalyzer, visit the Help and Documentation sec
 Sequence: Input a peptide sequence, either in upper or lowercase letters. The app will show an alert if ambiguity is detected in the sequence.
 Set parameters: There are 16 types of functionalities available to be calculated for the given peptide sequence and an extra added Blast tool access.
 Submit: Clicking on Submit will take us to a new page where we can see all the results that have been calculated. If the blast tool was accessed, this may take some time to display results depending on the length of the input sequence.
-Query: Mail your query to mrlabdbc@db.du.ac.in.
+Query: Mail your query to [Mail your query](mailto:mrlabdbc@db.du.ac.in) about paper.
+Query: Mail your query to [Mail your query](mailto:aswanthmanoj51@gmail.com) about code.
